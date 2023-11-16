@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         if ($result) {
                             while ($item = $result->fetch_assoc()) {
                                 echo "
-                                <tr class='clickable-row' style='cursor: pointer' data-href='{$item['item_type']}.php?id={$item['id']}'>
+                                <tr class='clickable-row' style='cursor: pointer' data-href='/STORE/{$item['item_type']}.php?id={$item['id']}'>
                                     <td class='border'>$item[item_name]</td>
                                     <td class='border'>$item[quantity]</td>
                                     <td class='border'>$item[price]</td>

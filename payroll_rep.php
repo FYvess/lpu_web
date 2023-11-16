@@ -62,7 +62,7 @@ require_once('process/payroll_report_process.php');
                                 if ($result) {
                                     while ($item = $result->fetch_assoc()) {
                                         echo "
-                                <tr class='clickable-row border' style='cursor: pointer' data-href='payroll.php?id={$item['id']}'>
+                                        <tr class='clickable-row border' style='cursor: pointer' data-href='payroll.php?id={$item['employee_no']}'>
                                     <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[employee_no]</td>
                                     <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[fname] $item[mname] $item[lname]</td>
                                     <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[basic_income]</td>

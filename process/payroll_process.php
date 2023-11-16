@@ -31,7 +31,7 @@ function empty_inputbox()
     $other_loans = "";
 }
 //decleration of variables with fix data value for employee info
-$employee_no = "2021-2-00429";
+$employee_no = "";
 $department = "DOE";
 $firstname = "FRANCO YVES";
 $mname = "PASCION";
@@ -253,6 +253,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // to press Calculate Net Income button
     } else if (isset($_POST["calculate_net_income"])) {
+        $employee_no = $_POST['employee_no'];
         $basic_rate_hour = $_POST["basic_rate_hour"];
         $basic_num_hours_cutoff = $_POST["basic_num_hours_cutoff"];
         $hono_rate_hour = $_POST["hono_rate_hour"];
