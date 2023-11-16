@@ -18,16 +18,16 @@
         <ul class="nav flex-column mb-auto">
           <li><a href="admin_page.php">Home</a></li>
           <li><a href="employee_registation_save.php">Employee Registration</a></li>
-          <li><a href="#">Employee Report</a></li>
+          <li><a href="emp_rep.php">Employee Report</a></li>
           <li><a href="payroll.php">Payroll</a></li>
-          <li><a href="">Payroll Report</a></li>
+          <li><a href="payroll_rep.php">Payroll Report</a></li>
           <li><a href="STORE/PANTS.PHP">POS</a></li>
-          <li><a href="#">POS Sales Report</a></li>
+          <li><a href="pos_rep.php">POS Sales Report</a></li>
           <li><a href="user_account.php">User Account</a></li>
           <li><a href="login_form.php">Logout</a></li>
         </ul>
       </nav>
-    </div> 
+    </div>
     <div class="flex-grow-1">
       <div class="container my-5">
         <div class="container-fluid">

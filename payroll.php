@@ -1,5 +1,6 @@
 <?php
-require_once('process/payroll_process.php');
+include('process/payroll_process.php');
+include 'process/payroll_fill.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ require_once('process/payroll_process.php');
 
 <body>
     <div class="d-flex">
-        <div class="vh-100 sticky-top bg-danger" style="width: 280px;">
+        <div class="vh-100 sticky-top bg-danger" style="width: 300px;">
             <h1 class="text-white fs-5 text-center my-5">Yves's Enterprise</h1>
             <nav class="NAVBAR">
                 <ul class="nav flex-column mb-auto">
@@ -43,7 +44,7 @@ require_once('process/payroll_process.php');
                         <div class="d-flex justify-content-center align-items-center flex-column">
                             <h1 class="fs-5 mx-4">Employee Basic Info:</h1>
                             <div class="card mb-3 mx-4" style="width: 14rem;">
-                            <div class="card" style="width: 250px;height:250px;"></div>
+                                <img src=<?php echo isset($type) ? "$type" : "Images/Assets/placeholder.jpg"; ?> class="card-img-top" alt="..." height="190">
                                 <input type="file" class="p-1">
                             </div>
                         </div>
@@ -57,8 +58,8 @@ require_once('process/payroll_process.php');
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group mb-3" style="height: 2rem;">
-                                                <input type="text" class="form-control" aria-describedby="button-addon2" id='employee_no' name="employee_no" value="<?php echo $employee_no ?>">
-                                                <button class="btn btn-outline-secondary" type="button" id="search_button"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24" class="">
+                                                <input type="text" class="form-control"  aria-describedby="button-addon2" id='employee_no' name="employee_no" value="<?php echo !isset($employee_no) ? "16789" : $employee_no?>">
+                                                <button class="btn btn-outline-secondary clickable" type="button" id="search" name='search'> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24" class="">
                                                         <path d="M 9 2 C 5.1458514 2 2 5.1458514 2 9 C 2 12.854149 5.1458514 16 9 16 C 10.747998 16 12.345009 15.348024 13.574219 14.28125 L 14 14.707031 L 14 16 L 20 22 L 22 20 L 16 14 L 14.707031 14 L 14.28125 13.574219 C 15.348024 12.345009 16 10.747998 16 9 C 16 5.1458514 12.854149 2 9 2 z M 9 4 C 11.773268 4 14 6.2267316 14 9 C 14 11.773268 11.773268 14 9 14 C 6.2267316 14 4 11.773268 4 9 C 4 6.2267316 6.2267316 4 9 4 z"></path>
                                                     </svg></button>
                                             </div>
@@ -389,7 +390,6 @@ require_once('process/payroll_process.php');
                                         </div>
                                     </div>
                                 </li>
-
                                 <li class="list-group-item border-0">
                                     <div class="row row-cols-3 align-items-center gap-2 mt-3 g-0 pe-4">
                                         <div class="col-4">
@@ -399,13 +399,13 @@ require_once('process/payroll_process.php');
                                             <button type="submit" name="calculate_net_income" class="btn btn-primary  w-100" style="white-space: nowrap; font-size:0.9rem;">Calculate Net Income</button>
                                         </div>
                                         <div class="col-3">
-                                            <button type="submit" name="new" class="btn btn-warning w-100" style="white-space: nowrap; font-size:0.9rem;">New</button>
+                                            <button type="submit" name="new" class="btn btn-danger w-100" style="white-space: nowrap; font-size:0.9rem;">New</button>
                                         </div>
                                         <div class="col-4">
                                             <button type="submit" name='save' id='save' class="btn btn-danger  w-100 " style="white-space: nowrap; font-size:0.9rem;">Save</button>
                                         </div>
                                         <div class="col-3">
-                                            <button type='submit' name='print_payslip' class="btn btn-info  w-100 " style="white-space: nowrap; font-size:0.9rem;">Print Payslip</button>
+                                            <button type='submit' name='print_payslip' class="btn btn-warning  w-100 " style="white-space: nowrap; font-size:0.9rem;">Print Payslip</button>
                                         </div>
                                         <div class="col-2">
                                             <button type="submit" name="cancel" class="btn btn-danger  w-100" style="white-space: nowrap; font-size:0.9rem;">Cancel</button>

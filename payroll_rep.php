@@ -24,7 +24,7 @@ require_once('process/payroll_report_process.php');
                     <li><a href="employee_registation_save.php">Employee Registration</a></li>
                     <li><a href="emp_rep.php">Employee Report</a></li>
                     <li><a href="payroll.php">Payroll</a></li>
-                    <li><a href="payroll_report_process.php">Payroll Report</a></li>
+                    <li><a href="payroll_rep.php">Payroll Report</a></li>
                     <li><a href="STORE/PANTS.PHP">POS</a></li>
                     <li><a href="pos_rep.php">POS Sales Report</a></li>
                     <li><a href="user_account.php">User Account</a></li>
@@ -62,7 +62,7 @@ require_once('process/payroll_report_process.php');
                                 if ($result) {
                                     while ($item = $result->fetch_assoc()) {
                                         echo "
-                                <tr class='clickable-row border' style='cursor: pointer' data-href='Payroll_page.php?id={$item['id']}'>
+                                <tr class='clickable-row border' style='cursor: pointer' data-href='payroll.php?id={$item['id']}'>
                                     <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[employee_no]</td>
                                     <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[fname] $item[mname] $item[lname]</td>
                                     <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[basic_income]</td>
