@@ -1,7 +1,6 @@
 <?php
-require_once('payroll_process.php');
+require_once('process/payroll_report_process.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,442 +8,91 @@ require_once('payroll_process.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payroll Page</title>
-    <link rel="stylesheet" href="../css/1cssstore.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/navbarforemploy.css">
 </head>
 
 <body>
-    <div class="vh-100 sticky-top bg-danger" style="width: 280px;">
-        <h1 class="text-white fs-5 text-center my-5">Yves's Enterprise</h1>
-        <nav class="NAVBAR">
-            <ul class="nav flex-column mb-auto">
-                <li><a href="admin_page.php">Home</a></li>
-                <li><a href="employee_registation_save.php">Employee Registration</a></li>
-                <li><a href="#">Employee Report</a></li>
-                <li><a href="payroll.php">Payroll</a></li>
-                <li><a href="">Payroll Report</a></li>
-                <li><a href="STORE/PANTS.PHP">POS</a></li>
-                <li><a href="#">POS Sales Report</a></li>
-                <li><a href="user_account.php">User Account</a></li>
-                <li><a href="login_form.php">Logout</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="flex-grow-1">
-        <div class="container border bg-white">
-            <h1 class="d-flex justify-content-center m-2" style="font-size:30px;">YVES'S Choice Payroll</h1>
-            <form class="row" method="post">
-                <div class="col">
-                    <div class="d-flex justify-content-center align-items-center flex-column">
-                        <h1 class="fs-5 mx-4">Employee Basic Info:</h1>
-                        <div class="card" style="width: 250px;height:250px;">
-                        </div>
-                        <input type="file" class="p-1" padding: 5px>
-                    </div>
-
-                    <div class="col d-flex justify-content-center">
-                        <ul class="">
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Employee Number:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="employee_no" class="form-control mb-1" style="height:2rem;" value="<?php echo $employee_no ?>" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Department:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="department" class="form-control mb-1" style="height:2rem;" value="<?php echo $department ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <h1 class="fs-5">Basic Income:</h1>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Rate / Hour:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="basic_rate_hour" value="<?php echo $basic_rate_hour; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        No. of Hours / Cut Off:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="basic_num_hours_cutoff" value="<?php echo $basic_num_hours_cutoff; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Income / Cut Off:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="basic_income_cutoff" value="<?php echo $basic_income_cutoff; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <h1 class="fs-5">Honorarium Income:</h1>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Rate / Hour:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="hono_rate_hour" value="<?php echo $hono_rate_hour; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        No. of Hours/ Cut off
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="hono_num_hours_cutoff" value="<?php echo $hono_num_hours_cutoff; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Income / Cut Off:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="hono_income_cutoff" value="<?php echo $hono_income_cutoff; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <h1 class="fs-5">Other Income:</h1>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Rate / Hour:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="other_rate_hour" value="<?php echo $other_rate_hour; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        No. of Hours/ Cut off
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="other_num_hours_cutoff" value="<?php echo $other_num_hours_cutoff; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Income / Cut Off:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="other_income_cutoff" value="<?php echo $other_income_cutoff; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <h1 class="fs-5">Summary Income:</h1>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Gross Income:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="gross_income" value="<?php echo $gross_income; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Net Income:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="net_income" value="<?php echo $net_income; ?>" class="form-control mb-1" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="col d-flex mt-4">
-                        <ul class="">
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Firstname:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="firstname" class="form-control mb-1 w-75" value="<?php echo $firstname ?>" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Middle Name:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="mname" class="form-control mb-1 w-75" value="<?php echo $mname ?>" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Surname:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="surname" class="form-control mb-1 w-75" value="<?php echo $surname ?>" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Civil Status:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="civil_status" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $civil_status ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Designation:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="designation" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $designation ?>" disabled aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Qualified Dependents
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="qualified_dependents" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $qualified_dependents ?>" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Paydate:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="paydate" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $paydate ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Employee Status:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="emp_status" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $emp_status ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <h1 class="fs-5">Regular Deduction:</h1>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        SSS Contribution:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="sss_contri" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $sss_contri ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        PhilHealth Contribution:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="philH_contri" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $philH_contri ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Pagibig Contribution:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="pagibig_contri" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $pagibig_contri ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Income Tax Contribution:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="tax_contri" class="form-control mb-1 w-75" style="height:2rem;" value="<?php echo $tax_contri ?>" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <h1 class="fs-5">Other Deduction:</h1>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        SSS Loan:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="sss_loan" value="<?php echo $sss_loan; ?>" class="form-control mb-1 w-75" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Pagibig Loan
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="pagibig_loan" value="<?php echo $pagibig_loan; ?>" class="form-control mb-1 w-75" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Faculty Saving Deposit:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="fs_deposit" value="<?php echo $fs_deposit; ?>" class="form-control mb-1 w-75" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Faculty Saving Loan:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="fs_loan" value="<?php echo $fs_loan; ?>" class="form-control mb-1 w-75" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Salary Loan:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="salary_loan" value="<?php echo $salary_loan; ?>" class="form-control mb-1 w-75" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Other Loans:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="other_loans" value="<?php echo $other_loans; ?>" class="form-control mb-1 w-75" style="height:2rem;" aria-label="Amount (to the nearest dollar)">
-                                    </div>
-                                </div>
-                            </li>
-                            <h1 class="fs-5">Deduction Summary:</h1>
-                            <li class="list-group-item border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        Total Deductions:
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="total_deduct" value="<?php echo $total_deduct ?>" class="form-control mb-1 w-75" style="height:2rem;" aria-label="Amount (to the nearest dollar)" disabled>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item border-0">
-                                <div class="row row-cols-3 align-items-center gap-2 mt-3 g-0 pe-4">
-                                    <div class="col-4">
-                                        <button type="submit" name="calculate_gross_income" class="btn btn-primary w-100" style="white-space: nowrap; font-size:0.9rem;">Calculate Gross Income</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="submit" name="calculate_net_income" class="btn btn-primary  w-100" style="white-space: nowrap; font-size:0.9rem;">Calculate Net Income</button>
-                                    </div>
-                                    <div class="col-3">
-                                        <button type="submit" name="new" class="btn btn-warning w-100" style="white-space: nowrap; font-size:0.9rem;">New</button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-info  w-100 " style="white-space: nowrap; font-size:0.9rem;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Preview Payslip
-                                        </button>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="button" class="btn btn-info w-100" style="white-space: nowrap; font-size:0.9rem;" data-bs-toggle="modal" data-bs-target="#PrintModal">
-                                            Print Payslip
-                                        </button>
-                                    </div>
-                                    <div class="col-2">
-                                        <button type="submit" name="cancel" class="btn btn-danger  w-100" style="white-space: nowrap; font-size:0.9rem;">Cancel</button>
-                                    </div>
-                                    <div class="col-2">
-                                        <button type="submit" name="close" class="btn btn-dark " style="white-space: nowrap; font-size:0.9rem; width:90%;">Close</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </form>
+    <div class="d-flex">
+        <div class="vh-100 sticky-top bg-danger" style="width: 280px;">
+            <h1 class="text-white fs-5 text-center my-5">Yves's Enterprise</h1>
+            <nav class="NAVBAR">
+                <ul class="nav flex-column mb-auto">
+                    <li><a href="admin_page.php">Home</a></li>
+                    <li><a href="employee_registation_save.php">Employee Registration</a></li>
+                    <li><a href="emp_rep.php">Employee Report</a></li>
+                    <li><a href="payroll.php">Payroll</a></li>
+                    <li><a href="payroll_report_process.php">Payroll Report</a></li>
+                    <li><a href="STORE/PANTS.PHP">POS</a></li>
+                    <li><a href="pos_rep.php">POS Sales Report</a></li>
+                    <li><a href="user_account.php">User Account</a></li>
+                    <li><a href="login_form.php">Logout</a></li>
+                </ul>
+            </nav>
         </div>
-    </div>
-    </div>
-    <!-- modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Preview Payslip</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+        <!-- main content -->
+        <div class=" flex-grow-1 bg-white">
+            <div class="px-1 bg-white">
+                <h1 class="d-flex justify-content-center m-2" style="font-size:30px;">Payroll Report</h1>
+                <form action="" method="post" class="input-group mb-3 mt-3" style="height: 2rem; width:250px">
+                    <input type="text" class="form-control" aria-describedby="button-addon2" placeholder="Search item name" name='search'>
+                    <button class="btn btn-outline-secondary" type="submit" id="search_button"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24" class="">
+                            <path d="M 9 2 C 5.1458514 2 2 5.1458514 2 9 C 2 12.854149 5.1458514 16 9 16 C 10.747998 16 12.345009 15.348024 13.574219 14.28125 L 14 14.707031 L 14 16 L 20 22 L 22 20 L 16 14 L 14.707031 14 L 14.28125 13.574219 C 15.348024 12.345009 16 10.747998 16 9 C 16 5.1458514 12.854149 2 9 2 z M 9 4 C 11.773268 4 14 6.2267316 14 9 C 14 11.773268 11.773268 14 9 14 C 6.2267316 14 4 11.773268 4 9 C 4 6.2267316 6.2267316 4 9 4 z"></path>
+                        </svg></button>
+                </form>
+                <div class="table-responsive">
+                        <table class="table table-borderless rounded small table-hover">
+                            <thead class="border">
+                                <tr class="">
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Employee Number</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Name</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Basic Income</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Honorarium Income</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Other Income</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Gross Income</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Total Deduction</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Net Income</span></th>
+                                    <th class="py-6 ps-6 border bg-danger"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Paydate</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if ($result) {
+                                    while ($item = $result->fetch_assoc()) {
+                                        echo "
+                                <tr class='clickable-row border' style='cursor: pointer' data-href='Payroll_page.php?id={$item['id']}'>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[employee_no]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[fname] $item[mname] $item[lname]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[basic_income]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[hono_income]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[other_income]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[gross_income]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[total_deduction]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[net_income]</td>
+                                    <td class='py-6 ps-6 border' style='border-color: black !important;'>$item[income_date]</td>
+                                </tr>
+                                ";
+                                    }
+                                }
+                                ?>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="PrintModal" tabindex="-1" aria-labelledby="PrintModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="PrintModalLabel">Print Payslip</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
-
+<script>
+    $(document).ready(function(){
+        $(".clickable-row").click(function(){
+            window.location = $(this).data("href")
+        })
+    })
+</script>
 </html>
