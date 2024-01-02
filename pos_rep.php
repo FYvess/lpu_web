@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <li><a href="emp_rep.php">Employee Report</a></li>
                     <li><a href="payroll.php">Payroll</a></li>
                     <li><a href="payroll_rep.php">Payroll Report</a></li>
-                    <li><a href="STORE/PANTS.PHP">POS</a></li>
+                    <li><a href="STORE/PANTS.php">POS</a></li>
                     <li><a href="pos_rep.php">POS Sales Report</a></li>
                     <li><a href="user_account.php">User Account</a></li>
                     <li><a href="login_form.php">Logout</a></li>
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         if ($result) {
                             while ($item = $result->fetch_assoc()) {
                                 echo "
-                                <tr class='clickable-row' style='cursor: pointer' data-href='/STORE/{$item['item_type']}.php?id={$item['id']}'>
+                                <tr class='clickable-row' style='cursor: pointer' data-href='STORE/{$item['item_type']}.php?id={$item['id']}'>
                                     <td class='border'>$item[item_name]</td>
                                     <td class='border'>$item[quantity]</td>
                                     <td class='border'>$item[price]</td>

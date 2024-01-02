@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payroll Page</title>
+    <title>employee report</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <li><a href="emp_rep.php">Employee Report</a></li>
                     <li><a href="payroll.php">Payroll</a></li>
                     <li><a href="payroll_rep.php">Payroll Report</a></li>
-                    <li><a href="STORE/PANTS.PHP">POS</a></li>
+                    <li><a href="STORE/PANTS.php">POS</a></li>
                     <li><a href="pos_rep.php">POS Sales Report</a></li>
                     <li><a href="user_account.php">User Account</a></li>
                     <li><a href="login_form.php">Logout</a></li>
