@@ -12,7 +12,7 @@ $customer_change = '';
 $Itemprice = '';
 
 if (isset($_GET['id'])) {
-    include 'process/db_connection.php';
+    include 'db_connection.php';
     $conn = OpenCon();
     $id = $_GET['id'];
     $sql = "SELECT * FROM `salestbl` where id = $id";
